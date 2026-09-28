@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "TikTok Repost Cleaner",
+  "version": "0.9.8",
+  "description": "Local Edge extension for removing TikTok reposts through a controlled allowlisted queue.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.tiktok.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "TikTok Repost Cleaner",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "run-dom-diagnostic": {
+      "suggested_key": {
+        "default": "Alt+Shift+I"
+      },
+      "description": "Capture a semantic diagnostic of the TikTok DOM"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.tiktok.com/*"
+      ],
+      "js": [
+        "config.js",
+        "dom-inspector.js",
+        "single-video-runner.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

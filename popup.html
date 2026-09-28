@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TikTok Repost Cleaner</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <header class="app__header">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8.25 4.75h7.5M6.5 8.75h11M8 12.75h8M9.5 16.75h5" /></svg>
+        </div>
+        <div>
+          <h1 id="app-title">Repost Cleaner</h1>
+          <p id="status-message">Comprobando TikTok…</p>
+        </div>
+        <span class="status-indicator" id="status-indicator" data-state="checking">
+          <span class="status-indicator__dot" aria-hidden="true"></span>
+          <span id="status-label">Conectando</span>
+        </span>
+      </header>
+
+      <button class="button button--secondary open-tiktok" id="open-button" type="button" hidden>Abrir TikTok</button>
+
+      <section class="queue-panel" aria-labelledby="queue-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="queue-title">Videos cargados</h2>
+            <p>El lote queda fijado a los videos detectados y avanza únicamente con Next.</p>
+          </div>
+          <span class="phase-badge" id="queue-state">Idle</span>
+        </div>
+
+        <dl class="metrics queue-metrics">
+          <div><dt>Detectados</dt><dd id="queue-found">0</dd></div>
+          <div><dt>Pendientes</dt><dd id="queue-pending">0</dd></div>
+          <div><dt>Procesados</dt><dd id="queue-processed">0</dd></div>
+          <div><dt>Eliminados</dt><dd id="queue-removed">0</dd></div>
+          <div><dt>Fallidos</dt><dd id="queue-failed">0</dd></div>
+        </dl>
+
+        <p class="route" id="queue-current">Abre manualmente el primer video del lote.</p>
+
+        <div class="queue-actions queue-actions--primary">
+          <button class="button button--secondary" id="queue-scan" type="button">Detectar</button>
+          <button class="button button--primary" id="queue-start" type="button">Iniciar</button>
+        </div>
+        <div class="queue-actions queue-actions--control">
+          <button class="button button--secondary" id="queue-toggle" type="button" disabled>Pausar</button>
+          <button class="button button--secondary" id="queue-stop" type="button" disabled>Detener</button>
+        </div>
+
+        <p class="run-result" id="queue-message" hidden aria-live="polite"></p>
+      </section>
+
+      <p class="privacy-note">Todo se ejecuta localmente. El menú de compartir se cierra después de cada video.</p>
+    </main>
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
